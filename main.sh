@@ -1,0 +1,21 @@
+export PYTHONPATH=$PYTHONPATH:$PWD
+export WANDB_API_KEY=a843d0170b664bae7e411538e4cad9dec4cf7ca3
+python procthor_objectnav/main.py \
+    experiment=procthor_objectnav/experiments/rgb_clipresnet50gru_ddppo \
+    agent=locobot \
+    target_object_types=robothor_habitat2022 \
+    machine.num_train_processes=1 \
+    machine.num_test_processes=20 \
+    ai2thor.platform=CloudRendering \
+    model.add_prev_actions_embedding=true \
+    callbacks=wandb_logging_callback \
+    seed=100 \
+    eval=true \
+    evaluation.tasks=["robothor"] \
+    evaluation.minival=false \
+    checkpoint=pretrained_models/exp_ObjectNav-RGB-ClipResNet50GRU-DDPPO__stage_02__steps_000415481616.pt \
+    wandb.name=pretrained_eval_embclip_1 \
+    wandb.project=procthor-rl \
+    wandb.entity=zilu \
+    visualize=true \
+    output_dir=eval_results
